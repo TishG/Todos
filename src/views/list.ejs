@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include ./partials/head.ejs %>
+  </head>
+  <body>
+      <% include ./partials/navbar.ejs %>
+      <main class="container">
+        <section class="text-center mt-3 dark-blue-text">
+            <h2>Add items to list</h2>
+            <form class="form-inline d-flex justify-content-center" action="/list/newItem" method="POST">
+                <div class="form-group mb-3 mr-1 mt-2">
+                  <label for="item" class="sr-only">Add New Item</label>
+                  <input type="text" class="form-control" id="add-new-item" placeholder="...add item" name="item">
+                </div>
+                <button type="submit" class="btn btn-outline-primary mb-2 dark-blue-text">add</button>
+              </form>
+        </section>
+        <section id="item-list" class="dark-blue-text d-flex justify-content-center">
+          <ul>
+            <% list.map(item => { %>
+              <li><%= item %></li>
+            <% }) %>
+          </ul>
+        </section>
+      </main>
+
+
+      <% include ./partials/baseScripts.ejs %>
+    </body>
+</html>
