@@ -1,0 +1,45 @@
+body {
+    padding-top: 54px;
+    background-color:#95B8D1;
+  }
+
+.navbar-light {
+    background-color: #809BCE;
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+}
+
+.dark-blue-text {
+    color:darkslateblue;
+    border-color:darkslateblue;
+}
+
+.navbar-brand {
+    font-size: 22px;
+}
+
+.nav-item {
+    font-size: 18px;
+}
+
+.index-lists {
+    font-size: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.form-control {
+    background-color: aliceblue;
+}
+
+.index-lists:hover {
+    color: #fff;
+}
