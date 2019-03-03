@@ -2,7 +2,7 @@ module.exports = {
     init(app){
       const homeRoute = require("../routes/home");
       app.use(homeRoute);
-      const catchAllRoute = require("../routes/catchAll");
-      app.use(catchAllRoute);
+      const listRoute = require("../routes/list");
+      app.use(listRoute);
     }
   }
