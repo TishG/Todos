@@ -43,3 +43,12 @@ a:hover {
 .index-lists:hover {
     color: #fff;
 }
+
+.user-message {
+    background-color: lightgoldenrodyellow;
+    color: midnightblue;
+}
+
+.midnight-blue {
+    color: midnightblue;
+}

@@ -5,9 +5,10 @@ const logger = require('morgan');
 const expressValidator = require("express-validator");
 const session = require("express-session");
 const flash = require("express-flash");
+const mongoose = require("mongoose");
+mongoose.connect(`mongodb://dbUser:${process.env.dbUserPassword}@list-app-shard-00-00-c9msa.mongodb.net:27017,list-app-shard-00-01-c9msa.mongodb.net:27017,list-app-shard-00-02-c9msa.mongodb.net:27017/test?ssl=true&replicaSet=list-app-shard-0&authSource=admin&retryWrites=true`, { useNewUrlParser: true } );
 // const passportConfig = require("./passport-config");
 const bodyParser = require("body-parser");
-
 module.exports = {
   init(app, express){
     app.set("views", viewsFolder);

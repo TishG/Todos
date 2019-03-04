@@ -5,23 +5,43 @@
   </head>
   <body>
       <% include ./partials/navbar.ejs %>
+
+      <% if(messages.message) { %>
+        <section class="card user-message">
+            <section class="card-body text-center"><%= messages.message %><a href="/list"><span class="fas fa-times ml-2 mt-2 dark-blue-text"></span></a></section>
+          </section>
+     <% } %>
+
       <main class="container">
         <section class="text-center mt-3 dark-blue-text">
             <h2>Add items to list</h2>
             <form class="form-inline d-flex justify-content-center" action="/list/newItem" method="POST">
                 <div class="form-group mb-3 mr-1 mt-2">
-                  <label for="item" class="sr-only">Add New Item</label>
-                  <input type="text" class="form-control" id="add-new-item" placeholder="...add item" name="item">
+                  <label for="name" class="sr-only">Add New Item</label>
+                  <input type="text" class="form-control" id="add-new-item" placeholder="...add item" name="name">
                 </div>
-                <button type="submit" class="btn btn-outline-primary mb-2 dark-blue-text">add</button>
+                <button type="submit" class="btn btn-outline-primary btn-sm mb-2 dark-blue-text">add</button>
               </form>
         </section>
         <section id="item-list" class="dark-blue-text d-flex justify-content-center">
+          <section>
+          <h2 class="my-2 text-center">Items</h2>
           <ul>
-            <% list.map(item => { %>
-              <li><%= item %></li>
+            <% itemList.map(item => { %>
+              <li class="my-3">
+                <form action="/list/<%= item._id %>/purchased" method="POST">
+                  <% if(item.purchased === false) { %>
+                     <span class="midnight-blue"><%= item.name %></span>
+                    <button type="submit" class="btn btn-outline-success btn-sm ml-2 dark-blue-text">Unpurchased</button>
+                 <% } else { %>
+                   <span class="text-secondary"><%= item.name %></span> 
+                  <button type="submit" class="btn btn-outline-danger btn-sm ml-2 dark-blue-text">purchased</button>
+                 <% } %>
+                </form>
+              </li>
             <% }) %>
           </ul>
+        </section>
         </section>
       </main>
 
