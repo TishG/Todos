@@ -1,5 +1,5 @@
 const Item = require("../models/item");
-const mongoose = require("mongoose");
+
 module.exports = {
     index(req, res, next) {
         Item.find({})
