@@ -46,7 +46,7 @@ signUp(req, res, next) {
                 user.comparePassword(password, (err, isMatch) => {
                     if(isMatch && isMatch == true) {
                         req.session.user = user;
-                        req.flash("message", `Welcome back, ${username}`);
+                        req.flash("message", `Welcome, ${username}`);
                         console.log(`successfully signed in ${username}`);
                         res.redirect("/list");
                     } else {
