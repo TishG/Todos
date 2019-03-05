@@ -11,38 +11,56 @@ signUp(req, res, next) {
 
     newUser.save((err, savedUser)=> { 
          if(err) {
-            req.flash("message", `Sign up failed, Please make sure all input meets requirements`);
-            console.log(err);
+            req.flash("message", `Sign up failed: Username is already taken or requirements have not been met.`);
             res.redirect("/");
+            console.log(err);
         } else {
-            req.flash("message", `You have successfully signed up! Welcome, ${savedUser.username}`);
-            res.redirect("/list");
+            req.flash("message", `You have successfully signed up! Sign in to view listing.`);
+            res.redirect("/users/sign_in");
             }
         })
     },
-signIn(req, res, next) {
+    signIn(req, res, next) {
         res.render("signIn");
     },
-userSignIn(req, res, next) {
+    userSignIn(req, res, next) {
         let username = req.body.username;
         let password = req.body.password;
 
         User.findOne({
-            username: username,
-            password: password 
+            username: username
         }, (err, user) => {
             if(err) {
                 req.flash("message", "Something went wrong.");
+                res.redirect("/users/sign_in");
                 console.log(err);
             }
             if(!user) {
-                req.flash("message", "User not found")
+                req.flash("message", "User not found");
+                res.redirect("/users/sign_in");
             } else {
-                req.flash("message", `Welcome back, ${username}`);
-                console.log(`successfully signed in ${username}`);
-                res.redirect("/list");
+                user.comparePassword(password, (err, isMatch) => {
+                    if(isMatch && isMatch == true) {
+                        req.session.user = user;
+                        req.flash("message", `Welcome back, ${username}`);
+                        console.log(`successfully signed in ${username}`);
+                        res.redirect("/list");
+                    } else {
+                        req.flash("message", "User not found");
+                        console.log(err); 
+                    }
+                })
             }
 
+        })
+    },
+    signOut(req, res, next) {
+        res.render("signOut");   
+        req.session.destroy()
+        .catch((err) => {
+            if(err) {
+                console.log(err);
+            }
         })
     }
 }
