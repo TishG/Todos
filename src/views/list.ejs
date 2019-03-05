@@ -29,13 +29,16 @@
           <ul>
             <% itemList.map(item => { %>
               <li class="my-3">
-                <form action="/list/<%= item._id %>/purchased" method="POST">
+                  <form action="/list/<%= item._id %>/delete" method="POST" class="d-inline-block">
+                    <button type="submit" class="dark-blue-text" id="delete-item-button"><span class="fas fa-times dark-blue-text"></span></button></span>
+                  </form>
+                <form action="/list/<%= item._id %>/purchased" method="POST" class="d-inline-block">
                   <% if(item.purchased === false) { %>
-                     <span class="midnight-blue"><%= item.name %></span>
                     <button type="submit" class="btn btn-outline-success btn-sm ml-2 dark-blue-text">Unpurchased</button>
+                    <span class="midnight-blue item-name"><%= item.name %></span>
                  <% } else { %>
-                   <span class="text-secondary"><%= item.name %></span> 
                   <button type="submit" class="btn btn-outline-danger btn-sm ml-2 dark-blue-text">purchased</button>
+                  <span class="text-secondary item-name" id="item-purchased"><%= item.name %></span> 
                  <% } %>
                 </form>
               </li>
