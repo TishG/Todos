@@ -2,7 +2,11 @@ const Item = require("../models/item");
 
 module.exports = {
     index(req, res, next) {
-        Item.find({})
+        if(!req.session.user) {
+            req.flash("message", "You are not authorized to do that. Please sign up or sign in.");
+            res.redirect("/");
+        }
+            Item.find({})
             .then(items => {
                 res.render("list", { itemList : items });
             })
