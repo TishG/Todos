@@ -30,15 +30,19 @@ signUp(req, res, next) {
         User.findOne({
             username: username
         }, (err, user) => {
+            if(req.session.user) {
+                req.flash("message", "You are already signed in.");
+                res.redirect("/list");
+            }
             if(err) {
-                req.flash("message", "Something went wrong.");
+                req.flash("message", "Something went wrong. Please try again");
                 res.redirect("/users/sign_in");
                 console.log(err);
             }
             if(!user) {
                 req.flash("message", "User not found");
                 res.redirect("/users/sign_in");
-            } else {
+            } 
                 user.comparePassword(password, (err, isMatch) => {
                     if(isMatch && isMatch == true) {
                         req.session.user = user;
@@ -50,9 +54,7 @@ signUp(req, res, next) {
                         console.log(err); 
                     }
                 })
-            }
-
-        })
+            })
     },
     signOut(req, res, next) {
         res.render("signOut");   
