@@ -10,7 +10,7 @@ module.exports = {
                 console.log(err);
                 req.flash('message', 'Something went wrong');
                 res.redirect("/list");
-            })
+                })
         },
     list(req, res, next) {
         const item = new Item({
@@ -28,7 +28,7 @@ module.exports = {
             console.log(err);
         })
     },
-    post(req, res, next) {
+    update(req, res, next) {
         let itemId = req.params.id;
         Item.findById(itemId)
         .exec()
@@ -39,6 +39,21 @@ module.exports = {
         .then(()=> {
             res.redirect("/list");
         })
+        .catch(err => {
+            console.log(err);
+            req.flash("message", "Something went wrong.");
+        })
+    },
+    delete(req, res, next) {
+        let itemId = req.params.id;
+        Item.findByIdAndRemove(itemId)
+        .exec()
+        .then(result => {
+            result.save();
+        })
+        .then(()=> {
+            res.redirect("/list");
+        }) 
         .catch(err => {
             console.log(err);
             req.flash("message", "Something went wrong.");

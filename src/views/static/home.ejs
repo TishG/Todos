@@ -5,6 +5,13 @@
   </head>
   <body>
       <% include ../partials/navbar.ejs %>
+
+      <% if(messages.message) { %>
+        <section class="card user-message">
+            <section class="card-body text-center"><%= messages.message %><a href="/"><span class="fas fa-times ml-2 mt-2 dark-blue-text"></span></a></section>
+          </section>
+     <% } %>
+
       <main class="container">
         <section class="text-center mt-3 dark-blue-text">
             <h2>Use List to:</h2>
@@ -12,6 +19,29 @@
             <p>add, remove, and check off items in real time</p>
             <p>collaborate on completing tasks</p>
         </section>
+        <section class="container mt-4 jumbotron col-11 col-md-8 col-lg-6" id="sign-up-form">
+        <h1 class="text-center dark-blue-text">Sign Up</h1>
+        <form action="/users/sign_up" method="POST" class="dark-blue-text">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input name="username" type="text" class="form-control" id="create-username" aria-describedby="usernameHelp" placeholder="Enter Username">
+            <small id="usenameHelp" class="form-text text-muted">Required: Username must be atleast 4 characters long.</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input name="password"type="password" class="form-control" id="create-password" placeholder="Enter Password">
+            <small id="passwordHelp" class="form-text text-muted">Required: Password must be atleast 8 characters long.</small>
+          </div>
+          <div class="form-group">
+            <label for="password-confirmation">Password Confirmation</label>
+            <input name="password-confirmation" type="password" class="form-control" id="password-confirmation" placeholder="Enter same password">
+            <small id="passwordConfirmationHelp" class="form-text text-muted">Required: Must match password above.</small>
+          </div>
+          <section class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-outline-primary dark-blue-text">Sign Up</button>
+          </section>
+        </form>
+      </section>
       </main>
 
 

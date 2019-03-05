@@ -52,3 +52,16 @@ a:hover {
 .midnight-blue {
     color: midnightblue;
 }
+
+#item-purchased {
+    text-decoration: line-through;
+}
+
+#delete-item-button {
+    border: none;
+    background-color: #95B8D1;
+}
+
+.item-name {
+    font-size: 20px;
+}
