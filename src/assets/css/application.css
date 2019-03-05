@@ -65,3 +65,9 @@ a:hover {
 .item-name {
     font-size: 20px;
 }
+
+.sign-out-nav-link {
+    border: 2px solid white;
+    padding: 6px;
+    border-radius: 4px;
+}

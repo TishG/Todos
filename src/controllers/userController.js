@@ -27,11 +27,16 @@ signUp(req, res, next) {
         let username = req.body.username;
         let password = req.body.password;
         
-        if(username == "" || password == "") {
-            req.flash("message", "Please enter a username");
+        if(username == "") {
+            req.flash("message", "Please enter a username.");
             res.redirect("/users/sign_in");
             return next();
         } 
+        if(password == "") {
+            req.flash("message", "Please enter a password.");
+            res.redirect("/users/sign_in");
+            return next();   
+        }
 
         User.findOne({
             username: username
@@ -59,12 +64,18 @@ signUp(req, res, next) {
             })
     },
     signOut(req, res, next) {
+        if(!req.session.user) {
+            res.render("signOutNotice.ejs");
+            res.redirect("/");
+        }
+        if(req.session.user) {
         res.render("signOut");   
         req.session.destroy()
         .catch((err) => {
             if(err) {
                 console.log(err);
-            }
-        })
+                }
+            })
+        }
     }
 }
