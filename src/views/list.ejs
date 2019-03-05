@@ -37,12 +37,12 @@
                   <% if(item.purchased === false) { %>
                     <section class="d-flex flex-nowrap">
                     <button type="submit" class="btn btn-outline-success btn-sm ml-2 dark-blue-text">Unpurchased</button>
-                    <span class="midnight-blue item-name text-nowrap"><%= item.name %></span>
+                    <span class="midnight-blue item-name ml-2 text-nowrap"><%= item.name %></span>
                    </section>
                  <% } else { %>
                   <section class="d-flex flex-nowrap">
                   <button type="submit" class="btn btn-outline-danger btn-sm ml-2 dark-blue-text">purchased</button>
-                  <span class="text-secondary item-name text-nowrap" id="item-purchased"><%= item.name %></span> 
+                  <span class="text-secondary item-name ml-2 text-nowrap" id="item-purchased"><%= item.name %></span> 
                 </section>
                  <% } %>
                 </form>
