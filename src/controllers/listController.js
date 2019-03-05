@@ -23,7 +23,6 @@ module.exports = {
         })
         item.save()
         .then(()=> {
-            req.flash("message", "item successfully added!");
             res.redirect("/list");
         })
         .catch(err => {
