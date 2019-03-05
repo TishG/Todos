@@ -30,10 +30,6 @@ signUp(req, res, next) {
         User.findOne({
             username: username
         }, (err, user) => {
-            if(req.session.user) {
-                req.flash("message", "You are already signed in.");
-                res.redirect("/list");
-            }
             if(err) {
                 req.flash("message", "Something went wrong. Please try again");
                 res.redirect("/users/sign_in");
