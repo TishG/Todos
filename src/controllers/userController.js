@@ -26,6 +26,12 @@ signUp(req, res, next) {
     userSignIn(req, res, next) {
         let username = req.body.username;
         let password = req.body.password;
+        
+        if(username == "" || password == "") {
+            req.flash("message", "Please enter a username");
+            res.redirect("/users/sign_in");
+            return next();
+        } 
 
         User.findOne({
             username: username
