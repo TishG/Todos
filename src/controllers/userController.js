@@ -56,6 +56,12 @@ signUp(req, res, next) {
                         console.log(err); 
                     }
                 })
+                //Signed in user attempting to sign in again.
+                if(req.session.user) {
+                    req.flash("message", "You are already signed in.");
+                    res.redirect("/users/sign_in");
+                    return next(); 
+                }
             })
     },
     signOut(req, res, next) {
