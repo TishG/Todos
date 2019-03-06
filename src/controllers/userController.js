@@ -32,7 +32,11 @@ signUp(req, res, next) {
             res.redirect("/users/sign_in");
             return next();
         } 
-
+        if(req.session.user) {
+            req.flash("message", "You are already signed in.");
+            res.redirect("/list");
+            return next(); 
+        }
         User.findOne({
             username: username
         }, (err, user) => {
@@ -57,11 +61,6 @@ signUp(req, res, next) {
                     }
                 })
                 //Signed in user attempting to sign in again.
-                if(req.session.user) {
-                    req.flash("message", "You are already signed in.");
-                    res.redirect("/users/sign_in");
-                    return next(); 
-                }
             })
     },
     signOut(req, res, next) {
