@@ -13,5 +13,3 @@ This application is a full stack todo application. Users can sign in and add ite
 The goal of this application is to be a collaborative tool where a group can work on completing a list together. This app was built with express, node, and mongodb. I decided to use express mainly because of it's ejs files. It allows me to easily do conditional rendering. I chose mondodb atlas for the database due to its cloud hosting, ease of database and model creation, and quick deployment. Some features that are lacking in this application are better clarification messages to the user about errors when signing up or signing in and more jasmine testing. I would like to add the ability to create multiple lists and private lists in the future. 
 
 You can view app here: https://tishg-list.herokuapp.com/
-
-Bug: Navbar does not work on mobile devices from website. Works when you clone repo and use on local device.
