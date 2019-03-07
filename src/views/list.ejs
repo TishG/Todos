@@ -26,10 +26,14 @@
         <section id="item-list" class="dark-blue-text d-flex justify-content-center">
           <section>
           <h2 class="my-2 text-center mr-5 pr-5">Items</h2>
-          <p class="text-center mr-5 pr-5"># of items: <%= itemList.length %></p>
+          <p class="text-center mr-5 pr-5"> Total: <%= itemList.length %></p>
+          <% let purchasedItems = itemList.filter(item => item.purchased) %>
+          <p class="text-center mr-5 pr-2"> Purchased: <%= purchasedItems.length %></p>
+          <% let unPurchasedItems = itemList.filter(item => !item.purchased) %>
+          <p class="text-center mr-4 pr-3 pb-2"> Unpurchased: <%= unPurchasedItems.length %></p>
           <ul>
             <% itemList.map(item => { %>
-              <li class="my-3 ml-5 d-flex flex-nowrap pr-4">
+              <li class="my-3 ml-2 d-flex flex-nowrap pr-4">
                   <form action="/list/<%= item._id %>/delete" method="POST" class="d-inline-block">
                     <button type="submit" class="dark-blue-text" id="delete-item-button"><span class="fas fa-times dark-blue-text"></span></button></span>
                   </form>
