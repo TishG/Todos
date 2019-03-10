@@ -7,9 +7,14 @@
       <% include ./partials/navbar.ejs %>
 
       <% if(messages.message) { %>
-        <section class="card user-message">
-            <section class="card-body text-center"><%= messages.message %><a href="/users/sign_in"><span class="fas fa-times ml-2 mt-2 dark-blue-text"></span></a></section>
+        <section class="d-flex justify-content-center">
+
+        <section class="card user-message col-12 col-sm-9 col-md-7 col-lg-5 animated fadeInDown">
+            <a href="/users/sign_in"><span class="far fa-window-close ml-2 mt-2 dark-blue-text"></span></a>
+            <section class="card-body text-center"><%= messages.message %></section>
           </section>
+
+        </section>
      <% } %>
 
       <main class="container mt-4">

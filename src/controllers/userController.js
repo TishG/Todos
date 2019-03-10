@@ -5,20 +5,36 @@ signUp(req, res, next) {
     let username = req.body.username;
     let password = req.body.password;
 
+    req.check("username", "username must be atleast 4 characters long.").isLength({min: 4})
+    req.check("password", "password must be atleast 8 characters long" ).isLength({min: 8})
+    req.check("passwordConfirmation", "Password Confirmation must match Password.").optional().equals(req.body.password)
+    let errors = req.validationErrors();
+
     let newUser = new User();
     newUser.username = username;
     newUser.password = password;
 
     newUser.save((err, savedUser)=> { 
-         if(err) {
-            req.flash("message", `Sign up failed: Username is already taken or requirements have not been met.`);
+        if(errors) {
+            let loggedErrors = errors.map(error => error.msg);
+            req.flash("message", loggedErrors);
             res.redirect("/");
-            console.log(err);
-        } else {
+            console.log(errors);
+            console.log("logged errors", loggedErrors);
+            next();
+        }       
+        //  if(err) { 
+        //     req.flash("message", err.message);
+        //     res.redirect("/");
+        //     console.log(err);
+        //     console.log('err.message:', err.message)
+        // } 
+        else {
             req.flash("message", `You have successfully signed up! Sign in to view listing.`);
             res.redirect("/users/sign_in");
             }
         })
+        
     },
     signIn(req, res, next) {
         res.render("signIn");
