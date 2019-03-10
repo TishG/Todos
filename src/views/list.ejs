@@ -3,19 +3,25 @@
   <head>
     <% include ./partials/head.ejs %>
   </head>
-  <body>
+  <body OnLoad="document.myform.name.focus();">
       <% include ./partials/navbar.ejs %>
 
-      <% if(messages.message) { %>
-        <section class="card user-message">
-            <section class="card-body text-center"><%= messages.message %><a href="/list"><span class="fas fa-times ml-2 mt-2 dark-blue-text"></span></a></section>
-          </section>
-     <% } %>
+     <% if(messages.message) { %>
+      <section class="d-flex justify-content-center">
+
+      <section class="card user-message col-12 col-sm-9 col-md-7 col-lg-5 animated fadeInDown">
+          <a href="/list"><span class="far fa-window-close ml-2 mt-2 dark-blue-text"></span></a>
+          <section class="card-body text-center"><%= messages.message %></section>
+        </section>
+
+      </section>
+   <% } %>
 
       <main class="container">
+
         <section class="text-center mt-3 dark-blue-text">
             <h2>Add items to list</h2>
-            <form class="form-inline d-flex justify-content-center" action="/list/newItem" method="POST">
+            <form class="form-inline d-flex justify-content-center" action="/list/newItem" method="POST" name="item-form" >
                 <div class="form-group mb-3 mr-1 mt-2">
                   <label for="name" class="sr-only">Add New Item</label>
                   <input type="text" class="form-control" id="add-new-item" placeholder="...add item" name="name">
@@ -31,10 +37,11 @@
           <p class="text-center mr-5 pr-2"> Purchased: <%= purchasedItems.length %></p>
           <% let unPurchasedItems = itemList.filter(item => !item.purchased) %>
           <p class="text-center mr-4 pr-3 pb-2"> Unpurchased: <%= unPurchasedItems.length %></p>
-          <ul>
+
+          <ul class="pb-3">
             <% itemList.map(item => { %>
-              <li class="my-3 ml-2 d-flex flex-nowrap pr-4">
-                  <form action="/list/<%= item._id %>/delete" method="POST" class="d-inline-block">
+              <li class="my-3 ml-5 d-flex flex-nowrap pr-4">
+                  <form action="/list/<%= item._id %>/delete" method="POST" class="d-inline-block" id="delete">
                     <button type="submit" class="dark-blue-text" id="delete-item-button"><span class="fas fa-times dark-blue-text"></span></button></span>
                   </form>
                 <form action="/list/<%= item._id %>/purchased" method="POST" class="d-inline-block">
@@ -55,6 +62,10 @@
           </ul>
         </section>
         </section>
+
+      </section>
+      <!-- row -->
+
       </main>
 
 

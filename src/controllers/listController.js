@@ -17,10 +17,22 @@ module.exports = {
                 })
         },
     list(req, res, next) {
-        const item = new Item({
+        let item = new Item({
             name: req.body.name,
             purchased: req.body.purchased
         })
+
+        req.check("name","name cannot exceed 30 characters").isLength({max: 30});
+        let errors = req.validationErrors();
+        if(errors) {
+            let loggedErrors = errors.map(error => error.msg)
+            console.log(loggedErrors);
+            req.flash("message", loggedErrors);
+            return res.redirect("/list");
+            
+        }
+
+
         item.save()
         .then(()=> {
             res.redirect("/list");
