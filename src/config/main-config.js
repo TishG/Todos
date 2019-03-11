@@ -8,6 +8,10 @@ const flash = require("express-flash");
 const mongoose = require("mongoose");
 mongoose.connect(`mongodb://dbUser:${process.env.dbUserPassword}@list-app-shard-00-00-c9msa.mongodb.net:27017,list-app-shard-00-01-c9msa.mongodb.net:27017,list-app-shard-00-02-c9msa.mongodb.net:27017/test?ssl=true&replicaSet=list-app-shard-0&authSource=admin&retryWrites=true`, { useNewUrlParser: true } );
 const bodyParser = require("body-parser");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { document } = (new JSDOM(`...`)).window;
+
 module.exports = {
   init(app, express){
     app.set("views", viewsFolder);
