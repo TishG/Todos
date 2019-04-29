@@ -20,6 +20,22 @@ body {
     font-size: 22px;
 }
 
+#sign-out-outline {
+    position: relative;
+    top: -4.5px;
+}
+
+#sign-out-outline:hover {
+    color: darkslateblue
+}
+
+@media screen and (max-width: 500px) {
+    #sign-out-outline {
+        position: relative;
+        right: 12px;
+    }
+}
+
 .nav-item {
     font-size: 18px;
 }
@@ -64,10 +80,4 @@ a:hover {
 
 .item-name {
     font-size: 20px;
-}
-
-.sign-out-nav-link {
-    border: 2px solid white;
-    padding: 6px;
-    border-radius: 4px;
 }
