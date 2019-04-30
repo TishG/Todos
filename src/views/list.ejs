@@ -66,7 +66,7 @@
             <% itemList.map(item => { %>
               <li class="my-3 ml-5 d-flex flex-nowrap pr-4">
                   <form action="/list/<%= item._id %>/delete" method="POST" class="d-inline-block" id="delete">
-                    <button type="submit" class="dark-blue-text" id="delete-item-button"><span class="fas fa-trash-alt text-danger"></span></button>
+                    <button type="submit" class="dark-blue-text" id="delete-item-button"><span class="fas fa-trash-alt text-secondary"></span></button>
                   </form>
                 <form action="/list/<%= item._id %>/purchased" method="POST" class="d-inline-block">
                   <% if(item.purchased === false) { %>
