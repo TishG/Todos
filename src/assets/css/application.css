@@ -1,6 +1,7 @@
 body {
     padding-top: 54px;
-    background-color:#95B8D1;
+    /* background-color:#95B8D1; */
+    background-color: white;
   }
 
 .navbar-light {
@@ -61,8 +62,16 @@ a:hover {
 }
 
 .user-message {
-    background-color: lightgoldenrodyellow;
-    color: midnightblue;
+    margin-top: 10px;
+}
+
+.close-message {
+    font-size: 24px;
+    color: rgb(161, 133, 51);
+    background: none;
+    border: none;
+    position: relative;
+    bottom: 2.5px;
 }
 
 .midnight-blue {
@@ -75,7 +84,7 @@ a:hover {
 
 #delete-item-button {
     border: none;
-    background-color: #95B8D1;
+    background-color: white;
 }
 
 .item-name {
